@@ -8,7 +8,7 @@ export const fmtSigned = (v: number | null | undefined) =>
 
 /** Residual warning: backend classification wins; otherwise configured tolerance. Zero never triggers. */
 export function hasResidual(s: SensorReading): boolean {
-  if (s.residual === null || s.residual === 0) return s.status === "warning" && s.residual !== 0 && s.residual !== null;
+  if (s.residual === null || s.residual === 0) return false;
   if (s.correctionApplied === true || s.status === "corrected") return false; // residual resolved by backend correction
   if (s.status === "warning" || s.status === "critical") return true;
   if (s.status === "healthy") return false;
