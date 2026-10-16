@@ -28,7 +28,7 @@ function mapSensor(raw: unknown): SensorReading | null {
   const o = raw as Record<string, unknown>;
   const id = String(pick(o, "id", "sensor_id", "name") ?? "").toUpperCase().replace(/^SENSOR[_\s-]*/, "") as SensorId;
   if (!SENSOR_IDS.includes(id)) return null;
-  const rawStatus = typeof o.status === "string" ? o.status : null;
+  const rawStatus = typeof o["status"] === "string" ? o["status"] : null;
   const ca = pick(o, "correction_applied", "correctionApplied", "corrected");
   return {
     id,

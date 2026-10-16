@@ -26,7 +26,7 @@ export function Dashboard() {
   const [forceDemo, setForceDemo] = useState(false);
   const data = useSensorData(car.distance, scenario, forceDemo);
   const scene = useRef<SceneHandle>(null);
-  const commitTimer = useRef<ReturnType<typeof setTimeout>>();
+  const commitTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const intel = useMemo(() => analyze(data.snapshot, data.stale), [data.snapshot, data.stale]);
   const statuses = useMemo(
